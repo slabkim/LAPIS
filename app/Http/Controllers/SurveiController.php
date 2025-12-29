@@ -22,10 +22,10 @@ class SurveiController extends Controller
         // Validation handled in frontend mostly via OQPS logic but backend validation needed
         $request->validate([
             'id_layanan' => 'required|exists:jenis_layanan,id_layanan',
-            'nilai_informasi' => 'required|integer|min:1|max:4', // 1-4 scale usually? Or 1-5?
-            'nilai_kecepatan' => 'required|integer|min:1|max:4',
-            'nilai_sikap' => 'required|integer|min:1|max:4',
-            'nilai_prosedur' => 'required|integer|min:1|max:4',
+            'nilai_informasi' => 'required|integer|min:1|max:5',
+            'nilai_kecepatan' => 'required|integer|min:1|max:5',
+            'nilai_sikap' => 'required|integer|min:1|max:5',
+            'nilai_prosedur' => 'required|integer|min:1|max:5',
         ]);
 
         $avg = ($request->nilai_informasi + $request->nilai_kecepatan + $request->nilai_sikap + $request->nilai_prosedur) / 4;
