@@ -52,8 +52,18 @@ class SupabaseStorageService
                 'body' => fopen($file->getRealPath(), 'r'),
             ]);
 
-            if ($response->getStatusCode() !== 200) {
-                throw new \Exception('Failed to upload file to Supabase Storage');
+            $statusCode = $response->getStatusCode();
+            
+            // Supabase returns 201 Created on successful upload, not 200
+            if ($statusCode !== 200 && $statusCode !== 201) {
+                $responseBody = $response->getBody()->getContents();
+                Log::error('Supabase upload failed', [
+                    'status' => $statusCode,
+                    'response' => $responseBody,
+                    'bucket' => $this->bucket,
+                    'path' => $filePath
+                ]);
+                throw new \Exception('Failed to upload file to Supabase Storage: ' . $responseBody);
             }
 
             // Return public URL

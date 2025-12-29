@@ -49,20 +49,20 @@
     </style>
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+<body class="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
 
     <!-- Navigation Bar -->
-    <header
-        class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+    <header class="sticky top-0 z-50 bg-white backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
-                    <div class="size-8 rounded bg-blue-600 flex items-center justify-center text-white">
-                        <span class="material-symbols-outlined text-xl">admin_panel_settings</span>
+                    <div>
+                        <img src="{{ asset('assets/images/Logo_balam.png') }}" alt="Logo Bandar Lampung"
+                            class="size-10 object-contain">
                     </div>
                     <div class="flex flex-col">
-                        <h1 class="text-lg font-bold leading-tight tracking-tight text-gray-900 dark:text-white">LAPIS
+                        <h1 class="text-lg font-bold leading-tight tracking-tight text-gray-900">LAPIS
                         </h1>
                         <span class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">Disdukcapil Bandar
                             Lampung</span>
@@ -72,38 +72,37 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-8">
                     <nav class="flex items-center gap-6">
-                        <a class="text-blue-600 dark:text-blue-400 font-bold text-sm"
-                            href="{{ route('dashboard') }}">Beranda</a>
+                        <a class="text-blue-600 font-bold text-sm" href="{{ route('dashboard') }}">Beranda</a>
 
                         <!-- Dropdown Pengaduan -->
                         <div class="relative dropdown">
                             <button
-                                class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm transition-colors flex items-center gap-1">
+                                class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors flex items-center gap-1">
                                 Pengaduan
                                 <span class="material-symbols-outlined text-sm">expand_more</span>
                             </button>
                             <div
-                                class="dropdown-menu hidden absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2">
+                                class="dropdown-menu hidden absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
                                 <a href="{{ route('pengaduan.pungli') }}"
-                                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                                     <span class="material-symbols-outlined text-red-600">gavel</span>
                                     <span>Pengaduan Calo & Pungli</span>
                                 </a>
                                 <a href="{{ route('pengaduan.keterlambatan') }}"
-                                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
                                     <span class="material-symbols-outlined text-blue-600">schedule_send</span>
                                     <span>Pengaduan Berkas Terlambat</span>
                                 </a>
                             </div>
                         </div>
 
-                        <a class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm transition-colors"
+                        <a class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors"
                             href="{{ route('survei.index') }}">Survei</a>
-                        <a class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm transition-colors"
+                        <a class="text-gray-600 hover:text-blue-600 font-medium text-sm transition-colors"
                             href="{{ route('profile.edit') }}">Profil</a>
                     </nav>
 
-                    <div class="h-6 w-px bg-gray-200 dark:bg-gray-700"></div>
+                    <div class="h-6 w-px bg-gray-200"></div>
 
                     <div class="flex items-center gap-4">
                         <button class="relative text-gray-500 hover:text-blue-600 transition-colors">
@@ -114,7 +113,7 @@
 
                         <div class="flex items-center gap-3 pl-2">
                             <div class="text-right hidden lg:block">
-                                <p class="text-sm font-bold text-gray-900 dark:text-white">{{ Auth::user()->name }}</p>
+                                <p class="text-sm font-bold text-gray-900">{{ Auth::user()->name }}</p>
                                 <p class="text-xs text-gray-500">Masyarakat</p>
                             </div>
                             <div class="size-9 rounded-full bg-gray-200 bg-center bg-cover border-2 border-white shadow-sm"
@@ -170,7 +169,7 @@
         <!-- Main Services Grid -->
         <section>
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
                     <span class="w-1 h-6 bg-red-600 rounded-full"></span>
                     Layanan Utama
                 </h2>
@@ -180,17 +179,16 @@
 
                 <!-- Card 1: Pungli (Warning Theme) -->
                 <div
-                    class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+                    class="group relative bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
                     <div
-                        class="h-40 w-full bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 relative flex items-center justify-center">
+                        class="h-40 w-full bg-gradient-to-br from-red-50 to-red-100 relative flex items-center justify-center">
                         <div
-                            class="size-16 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex items-center justify-center text-red-600">
+                            class="size-16 bg-white rounded-lg shadow-sm flex items-center justify-center text-red-600">
                             <span class="material-symbols-outlined text-4xl">gavel</span>
                         </div>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3
-                            class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-red-600 transition-colors">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
                             Pengaduan Pungli & Calo
                         </h3>
                         <p class="text-gray-500 text-sm mb-6 flex-grow">
@@ -206,17 +204,16 @@
 
                 <!-- Card 2: Keterlambatan (Primary Blue Theme) -->
                 <div
-                    class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+                    class="group relative bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
                     <div
-                        class="h-40 w-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 relative flex items-center justify-center">
+                        class="h-40 w-full bg-gradient-to-br from-blue-50 to-blue-100 relative flex items-center justify-center">
                         <div
-                            class="size-16 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex items-center justify-center text-blue-600">
+                            class="size-16 bg-white rounded-lg shadow-sm flex items-center justify-center text-blue-600">
                             <span class="material-symbols-outlined text-4xl">schedule_send</span>
                         </div>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3
-                            class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                             Keterlambatan Berkas
                         </h3>
                         <p class="text-gray-500 text-sm mb-6 flex-grow">
@@ -232,17 +229,16 @@
 
                 <!-- Card 3: Survei (Green/Positive Theme) -->
                 <div
-                    class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+                    class="group relative bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
                     <div
-                        class="h-40 w-full bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 relative flex items-center justify-center">
+                        class="h-40 w-full bg-gradient-to-br from-green-50 to-green-100 relative flex items-center justify-center">
                         <div
-                            class="size-16 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex items-center justify-center text-green-600">
+                            class="size-16 bg-white rounded-lg shadow-sm flex items-center justify-center text-green-600">
                             <span class="material-symbols-outlined text-4xl">sentiment_satisfied</span>
                         </div>
                     </div>
                     <div class="p-6 flex flex-col flex-grow">
-                        <h3
-                            class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 transition-colors">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                             Survei Kepuasan
                         </h3>
                         <p class="text-gray-500 text-sm mb-6 flex-grow">
@@ -259,15 +255,15 @@
         </section>
 
         <!-- Recent Activity Section -->
-        <section class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+        <section class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
             <div class="flex items-center justify-between mb-6">
-                <h2 class="text-xl font-bold text-gray-900 dark:text-white">Riwayat Laporan Terakhir</h2>
+                <h2 class="text-xl font-bold text-gray-900">Riwayat Laporan Terakhir</h2>
                 {{-- <a href="#" class="text-sm font-semibold text-blue-600 hover:underline">Lihat Semua</a> --}}
             </div>
 
             @if ($pungli->isEmpty() && $keterlambatan->isEmpty())
                 <div class="flex flex-col items-center justify-center py-12 text-center">
-                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-full mb-3">
+                    <div class="bg-gray-50 p-4 rounded-full mb-3">
                         <span class="material-symbols-outlined text-gray-400 text-3xl">inbox</span>
                     </div>
                     <p class="text-gray-500 font-medium">Belum ada riwayat laporan.</p>
@@ -276,7 +272,7 @@
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="border-b border-gray-100 dark:border-gray-700">
+                            <tr class="border-b border-gray-100">
                                 <th class="py-3 px-2 text-xs font-bold uppercase text-gray-400 tracking-wider">ID
                                     Laporan</th>
                                 <th class="py-3 px-2 text-xs font-bold uppercase text-gray-400 tracking-wider">Jenis
@@ -289,11 +285,10 @@
                         </thead>
                         <tbody class="text-sm">
                             @foreach ($pungli->take(5) as $p)
-                                <tr
-                                    class="group hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border-b border-gray-50 dark:border-gray-800">
-                                    <td class="py-4 px-2 font-medium text-gray-900 dark:text-white">
+                                <tr class="group hover:bg-gray-50 transition-colors border-b border-gray-50">
+                                    <td class="py-4 px-2 font-medium text-gray-900">
                                         #LPS-{{ $p->id_pengaduan }}</td>
-                                    <td class="py-4 px-2 text-gray-600 dark:text-gray-300">
+                                    <td class="py-4 px-2 text-gray-600">
                                         <div class="flex items-center gap-2">
                                             <span class="material-symbols-outlined text-base text-red-600">gavel</span>
                                             Pungli & Calo
@@ -303,9 +298,9 @@
                                     <td class="py-4 px-2">
                                         <span
                                             class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold 
-                                            @if ($p->status_pengaduan == 'Selesai') bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400
-                                            @elseif($p->status_pengaduan == 'Diproses') bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400
-                                            @else bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 @endif">
+                                            @if ($p->status_pengaduan == 'Selesai') bg-green-100 text-green-800
+                                            @elseif($p->status_pengaduan == 'Diproses') bg-yellow-100 text-yellow-800
+                                            @else bg-gray-100 text-gray-800 @endif">
                                             <span
                                                 class="size-1.5 rounded-full 
                                                 @if ($p->status_pengaduan == 'Selesai') bg-green-500
@@ -318,11 +313,10 @@
                             @endforeach
 
                             @foreach ($keterlambatan->take(5) as $k)
-                                <tr
-                                    class="group hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border-b border-gray-50 dark:border-gray-800">
-                                    <td class="py-4 px-2 font-medium text-gray-900 dark:text-white">
+                                <tr class="group hover:bg-gray-50 transition-colors border-b border-gray-50">
+                                    <td class="py-4 px-2 font-medium text-gray-900">
                                         #LPK-{{ $k->id_pengaduan }}</td>
-                                    <td class="py-4 px-2 text-gray-600 dark:text-gray-300">
+                                    <td class="py-4 px-2 text-gray-600">
                                         <div class="flex items-center gap-2">
                                             <span
                                                 class="material-symbols-outlined text-base text-blue-600">schedule_send</span>
@@ -333,9 +327,9 @@
                                     <td class="py-4 px-2">
                                         <span
                                             class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold 
-                                            @if ($k->status_pengaduan == 'Selesai') bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400
-                                            @elseif($k->status_pengaduan == 'Diproses') bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400
-                                            @else bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 @endif">
+                                            @if ($k->status_pengaduan == 'Selesai') bg-green-100 text-green-800
+                                            @elseif($k->status_pengaduan == 'Diproses') bg-yellow-100 text-yellow-800
+                                            @else bg-gray-100 text-gray-800 @endif">
                                             <span
                                                 class="size-1.5 rounded-full 
                                                 @if ($k->status_pengaduan == 'Selesai') bg-green-500
@@ -355,7 +349,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto">
+    <footer class="bg-white border-t border-gray-200 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="md:col-span-2">
@@ -363,16 +357,16 @@
                         <div class="size-6 rounded bg-blue-600 flex items-center justify-center text-white text-xs">
                             <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
                         </div>
-                        <span class="font-bold text-lg text-gray-900 dark:text-white">LAPIS Disdukcapil</span>
+                        <span class="font-bold text-lg text-gray-900">LAPIS Disdukcapil</span>
                     </div>
-                    <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm mb-4">
+                    <p class="text-sm text-gray-500 max-w-sm mb-4">
                         Sistem layanan pengaduan dan informasi terpadu untuk pelayanan administrasi kependudukan yang
                         bersih, transparan, dan akuntabel di Kota Bandar Lampung.
                     </p>
                 </div>
 
                 <div>
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white mb-4 uppercase tracking-wider">Tautan
+                    <h3 class="font-bold text-sm text-gray-900 mb-4 uppercase tracking-wider">Tautan
                     </h3>
                     <ul class="space-y-3">
                         <li><a class="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400"
@@ -385,29 +379,28 @@
                 </div>
 
                 <div>
-                    <h3 class="font-bold text-sm text-gray-900 dark:text-white mb-4 uppercase tracking-wider">Kontak
+                    <h3 class="font-bold text-sm text-gray-900 mb-4 uppercase tracking-wider">Kontak
                     </h3>
                     <ul class="space-y-3">
                         <li class="flex items-start gap-2">
                             <span class="material-symbols-outlined text-gray-400 text-sm mt-0.5">location_on</span>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">Jl. Dr. Susilo No. 2, Bandar
+                            <span class="text-sm text-gray-500">Jl. Dr. Susilo No. 2, Bandar
                                 Lampung</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-gray-400 text-sm">phone</span>
-                            <span class="text-sm text-gray-500 dark:text-gray-400">(0721) 481234</span>
+                            <span class="text-sm text-gray-500">(0721) 481234</span>
                         </li>
                         <li class="flex items-center gap-2">
                             <span class="material-symbols-outlined text-gray-400 text-sm">email</span>
-                            <span
-                                class="text-sm text-gray-500 dark:text-gray-400">disdukcapil@bandarlampungkota.go.id</span>
+                            <span class="text-sm text-gray-500">disdukcapil@bandarlampungkota.go.id</span>
                         </li>
                     </ul>
                 </div>
             </div>
 
             <div
-                class="border-t border-gray-100 dark:border-gray-700 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                class="border-t border-gray-100 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
                 <p class="text-sm text-gray-400 text-center md:text-left">
                     © {{ date('Y') }} Dinas Kependudukan dan Pencatatan Sipil Kota Bandar Lampung.
                 </p>
