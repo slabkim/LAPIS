@@ -139,6 +139,7 @@
                                                     Tanggal</th>
                                                 <th class="p-4 text-xs font-bold tracking-wide text-gray-500 uppercase">
                                                     Status</th>
+                                                <th class="text-right">Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-50">
@@ -183,6 +184,13 @@
                                                             <span class="size-1.5 rounded-full bg-current"></span>
                                                             {{ $item['status'] }}
                                                         </span>
+                                                    </td>
+                                                    <td class="p-4 text-right">
+                                                        <a href="{{ route('pengaduan.show', ['type' => $item['type'], 'id' => $item['id']]) }}"
+                                                            class="text-blue-600 hover:text-blue-700 font-medium text-sm inline-flex items-center gap-1">
+                                                            Detail <span
+                                                                class="material-symbols-outlined text-sm">arrow_forward</span>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
