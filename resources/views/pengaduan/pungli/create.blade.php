@@ -98,16 +98,34 @@
                     <label class="text-gray-900 text-sm font-bold leading-normal">
                         Lampiran Bukti (Foto/Video) <span class="text-red-600">*</span>
                     </label>
-                    <div
-                        class="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition-colors cursor-pointer group/upload relative">
+                    <div class="w-full border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 hover:border-blue-500 transition-all cursor-pointer p-6 relative"
+                        id="uploadArea">
                         <input type="file" id="bukti" name="bukti[]" multiple accept="image/*,video/*" required
+                            onchange="handleFileSelect(event)"
                             class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-                        <div
-                            class="size-12 rounded-full bg-blue-50 flex items-center justify-center mb-3 group-hover/upload:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-blue-600 text-2xl">cloud_upload</span>
+
+                        <!-- Upload Placeholder -->
+                        <div id="uploadPlaceholder"
+                            class="flex flex-col items-center justify-center text-center pointer-events-none">
+                            <div class="size-12 rounded-full bg-blue-50 flex items-center justify-center mb-3">
+                                <span class="material-symbols-outlined text-blue-600 text-2xl">cloud_upload</span>
+                            </div>
+                            <p class="text-sm font-medium text-gray-900">Klik untuk upload atau drag & drop</p>
+                            <p class="text-xs text-gray-500 mt-1">PNG, JPG, atau MP4 (Maks. 20MB)</p>
                         </div>
-                        <p class="text-sm font-medium text-gray-900">Klik untuk upload atau drag & drop</p>
-                        <p class="text-xs text-gray-500 mt-1">PNG, JPG, atau MP4 (Maks. 20MB)</p>
+
+                        <!-- File Preview (Hidden by default) -->
+                        <div id="filePreview" class="hidden w-full pointer-events-none">
+                            <div class="flex items-center gap-3 mb-3 text-green-700 bg-green-50 p-3 rounded-lg">
+                                <span class="material-symbols-outlined">check_circle</span>
+                                <span class="font-semibold text-sm" id="fileCount"></span>
+                            </div>
+                            <div id="fileList" class="space-y-2 max-h-40 overflow-y-auto"></div>
+                            <button type="button" onclick="clearFiles()"
+                                class="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium pointer-events-auto">
+                                Hapus Semua File
+                            </button>
+                        </div>
                     </div>
                     <x-input-error :messages="$errors->get('bukti')" class="mt-1" />
                 </div>
@@ -154,4 +172,49 @@
             </form>
         </div>
     </main>
+
+    <script>
+        function handleFileSelect(event) {
+            const files = event.target.files;
+            const fileCount = document.getElementById('fileCount');
+            const fileList = document.getElementById('fileList');
+            const uploadPlaceholder = document.getElementById('uploadPlaceholder');
+            const filePreview = document.getElementById('filePreview');
+
+            if (files.length > 0) {
+                uploadPlaceholder.classList.add('hidden');
+                filePreview.classList.remove('hidden');
+
+                fileCount.textContent = `${files.length} file terpilih`;
+                fileList.innerHTML = '';
+
+                Array.from(files).forEach((file, index) => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className =
+                        'flex items-center gap-3 p-2 bg-white rounded border border-gray-200 text-left';
+
+                    const icon = file.type.startsWith('image/') ? 'image' : 'videocam';
+                    const size = (file.size / 1024 / 1024).toFixed(2);
+
+                    fileItem.innerHTML = `
+                        <span class="material-symbols-outlined text-blue-600">${icon}</span>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate">${file.name}</p>
+                            <p class="text-xs text-gray-500">${size} MB</p>
+                        </div>
+                    `;
+
+                    fileList.appendChild(fileItem);
+                });
+            }
+        }
+
+        function clearFiles() {
+            const fileInput = document.getElementById('bukti');
+            fileInput.value = '';
+
+            document.getElementById('uploadPlaceholder').classList.remove('hidden');
+            document.getElementById('filePreview').classList.add('hidden');
+        }
+    </script>
 </x-user-layout>

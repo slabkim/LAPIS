@@ -88,16 +88,35 @@
                         <span class="text-gray-900 text-sm font-semibold mb-2">
                             Lampiran Bukti (Foto Resi/Dokumen) <span class="text-red-600">*</span>
                         </span>
-                        <div
-                            class="w-full border-2 border-dashed border-gray-300 hover:border-blue-600 rounded-xl bg-gray-50 hover:bg-blue-50 transition-all cursor-pointer group p-8 flex flex-col items-center justify-center text-center relative">
-                            <input type="file" id="bukti" name="bukti[]" multiple accept=".pdf,image/*" required
+                        <div class="w-full border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 hover:border-blue-600 transition-all cursor-pointer p-8 relative"
+                            id="uploadAreaKeterlambatan">
+                            <input type="file" id="buktiKeterlambatan" name="bukti[]" multiple accept=".pdf,image/*"
+                                required onchange="handleFileSelectKeterlambatan(event)"
                                 class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" />
-                            <div
-                                class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-blue-600 text-2xl">cloud_upload</span>
+
+                            <!-- Upload Placeholder -->
+                            <div id="uploadPlaceholderKeterlambatan"
+                                class="flex flex-col items-center justify-center text-center pointer-events-none">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center mb-3">
+                                    <span class="material-symbols-outlined text-blue-600 text-2xl">cloud_upload</span>
+                                </div>
+                                <p class="text-sm font-medium text-gray-900">Klik untuk unggah atau seret berkas</p>
+                                <p class="text-xs text-gray-500 mt-1">Format JPG, PNG, atau PDF (Maks. 20MB)</p>
                             </div>
-                            <p class="text-sm font-medium text-gray-900">Klik untuk unggah atau seret berkas</p>
-                            <p class="text-xs text-gray-500 mt-1">Format JPG, PNG, atau PDF (Maks. 20MB)</p>
+
+                            <!-- File Preview (Hidden by default) -->
+                            <div id="filePreviewKeterlambatan" class="hidden w-full pointer-events-none">
+                                <div class="flex items-center gap-3 mb-3 text-green-700 bg-green-50 p-3 rounded-lg">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                    <span class="font-semibold text-sm" id="fileCountKeterlambatan"></span>
+                                </div>
+                                <div id="fileListKeterlambatan" class="space-y-2 max-h-40 overflow-y-auto"></div>
+                                <button type="button" onclick="clearFilesKeterlambatan()"
+                                    class="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium pointer-events-auto">
+                                    Hapus Semua File
+                                </button>
+                            </div>
                         </div>
                         <x-input-error :messages="$errors->get('bukti')" class="mt-1" />
                     </label>
@@ -128,4 +147,49 @@
             </form>
         </div>
     </main>
+
+    <script>
+        function handleFileSelectKeterlambatan(event) {
+            const files = event.target.files;
+            const fileCount = document.getElementById('fileCountKeterlambatan');
+            const fileList = document.getElementById('fileListKeterlambatan');
+            const uploadPlaceholder = document.getElementById('uploadPlaceholderKeterlambatan');
+            const filePreview = document.getElementById('filePreviewKeterlambatan');
+
+            if (files.length > 0) {
+                uploadPlaceholder.classList.add('hidden');
+                filePreview.classList.remove('hidden');
+
+                fileCount.textContent = `${files.length} file terpilih`;
+                fileList.innerHTML = '';
+
+                Array.from(files).forEach((file) => {
+                    const fileItem = document.createElement('div');
+                    fileItem.className =
+                        'flex items-center gap-3 p-2 bg-white rounded border border-gray-200 text-left';
+
+                    const icon = file.type.startsWith('image/') ? 'image' : 'picture_as_pdf';
+                    const size = (file.size / 1024 / 1024).toFixed(2);
+
+                    fileItem.innerHTML = `
+                        <span class="material-symbols-outlined text-blue-600">${icon}</span>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate">${file.name}</p>
+                            <p class="text-xs text-gray-500">${size} MB</p>
+                        </div>
+                    `;
+
+                    fileList.appendChild(fileItem);
+                });
+            }
+        }
+
+        function clearFilesKeterlambatan() {
+            const fileInput = document.getElementById('buktiKeterlambatan');
+            fileInput.value = '';
+
+            document.getElementById('uploadPlaceholderKeterlambatan').classList.remove('hidden');
+            document.getElementById('filePreviewKeterlambatan').classList.add('hidden');
+        }
+    </script>
 </x-user-layout>
