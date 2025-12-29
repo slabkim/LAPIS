@@ -10,6 +10,7 @@ use App\Models\KategoriPengaduan;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PengaduanController extends Controller
 {
@@ -43,21 +44,29 @@ class PengaduanController extends Controller
             'is_anonim' => $isAnonim,
         ]);
 
-        // Handle File Uploads (Lampiran)
+        // Handle File Uploads (Lampiran) - Upload to Supabase Storage
         if ($request->hasFile('bukti')) {
+            $supabaseStorage = new \App\Services\SupabaseStorageService();
+            
             foreach ($request->file('bukti') as $file) {
-                $extension = $file->getClientOriginalExtension();
-                $fileName = time() . '_' . uniqid() . '.' . $extension;
-                $path = $file->storeAs('pengaduan/pungli', $fileName, 'public');
-                
-                // Determine file type
-                $tipeFile = in_array($extension, ['mp4', 'mov', 'avi', 'wmv']) ? 'video' : 'foto';
-                
-                $pengaduan->lampiran()->create([
-                    'jenis_pengaduan' => 'pungli_calo',
-                    'path_file' => $path,
-                    'tipe_file' => $tipeFile,
-                ]);
+                try {
+                    // Upload to Supabase Storage
+                    $fileUrl = $supabaseStorage->upload($file, 'pengaduan/pungli');
+                    
+                    // Determine file type
+                    $extension = $file->getClientOriginalExtension();
+                    $tipeFile = in_array($extension, ['mp4', 'mov', 'avi', 'wmv']) ? 'video' : 'foto';
+                    
+                    // Store file URL in database
+                    $pengaduan->lampiran()->create([
+                        'jenis_pengaduan' => 'pungli_calo',
+                        'path_file' => $fileUrl,
+                        'tipe_file' => $tipeFile,
+                    ]);
+                } catch (\Exception $e) {
+                    // Log error but continue processing other files
+                    Log::error('Failed to upload file to Supabase: ' . $e->getMessage());
+                }
             }
         }
 
@@ -86,21 +95,29 @@ class PengaduanController extends Controller
             'tenggat_berkas' => $request->tenggat_berkas,
         ]);
 
-        // Handle File Uploads
+        // Handle File Uploads - Upload to Supabase Storage
         if ($request->hasFile('bukti')) {
+            $supabaseStorage = new \App\Services\SupabaseStorageService();
+            
             foreach ($request->file('bukti') as $file) {
-                $extension = $file->getClientOriginalExtension();
-                $fileName = time() . '_' . uniqid() . '.' . $extension;
-                $path = $file->storeAs('pengaduan/keterlambatan', $fileName, 'public');
-                
-                // Determine file type
-                $tipeFile = $extension === 'pdf' ? 'pdf' : 'foto';
-                
-                $pengaduan->lampiran()->create([
-                    'jenis_pengaduan' => 'keterlambatan',
-                    'path_file' => $path,
-                    'tipe_file' => $tipeFile,
-                ]);
+                try {
+                    // Upload to Supabase Storage
+                    $fileUrl = $supabaseStorage->upload($file, 'pengaduan/keterlambatan');
+                    
+                    // Determine file type
+                    $extension = $file->getClientOriginalExtension();
+                    $tipeFile = $extension === 'pdf' ? 'pdf' : 'foto';
+                    
+                    // Store file URL in database
+                    $pengaduan->lampiran()->create([
+                        'jenis_pengaduan' => 'keterlambatan',
+                        'path_file' => $fileUrl,
+                        'tipe_file' => $tipeFile,
+                    ]);
+                } catch (\Exception $e) {
+                    // Log error but continue processing other files
+                    Log::error('Failed to upload file to Supabase: ' . $e->getMessage());
+                }
             }
         }
 
