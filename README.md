@@ -1,66 +1,282 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Portal LAPIS
+
+**Layanan Aspirasi dan Pengaduan Imigrasi Seketika**
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel">
+  <img src="https://img.shields.io/badge/PHP-8.1+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS">
+  <img src="https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
 </p>
 
-## About Laravel
+## 📖 Tentang Proyek
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Portal LAPIS adalah sistem aplikasi web yang dirancang untuk memfasilitasi layanan pengaduan dan survei kepuasan masyarakat terhadap layanan imigrasi. Platform ini menyediakan kanal komunikasi dua arah antara masyarakat dan administrator untuk meningkatkan kualitas layanan imigrasi.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🎯 Tujuan Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   Memberikan kemudahan masyarakat dalam menyampaikan pengaduan terkait layanan imigrasi
+-   Monitoring dan pengelolaan pengaduan secara sistematis
+-   Mengukur tingkat kepuasan masyarakat terhadap layanan imigrasi
+-   Meningkatkan transparansi dan akuntabilitas pelayanan publik
 
-## Learning Laravel
+## ✨ Fitur Utama
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 👥 Panel User (Masyarakat)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **Autentikasi Multi-Opsi**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    -   Registrasi dan login dengan email/password
+    -   Login menggunakan Google OAuth
+    -   Verifikasi email untuk keamanan
 
-## Laravel Sponsors
+-   **Pengaduan Layanan**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    -   **Pengaduan Pungli/Calo**: Laporan terkait pungutan liar atau percaloan
+    -   **Pengaduan Keterlambatan**: Laporan terkait keterlambatan layanan
+    -   Upload lampiran/bukti pendukung
+    -   Tracking status pengaduan secara real-time
 
-### Premium Partners
+-   **Survei Kepuasan**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    -   Isian survei kepuasan layanan berbasis kategori
+    -   Penilaian terhadap berbagai aspek layanan
 
-## Contributing
+-   **Manajemen Profil**
+    -   Update data pribadi
+    -   Ubah password
+    -   Hapus akun
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🔐 Panel Admin
 
-## Code of Conduct
+-   **Dashboard Analitik**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    -   Statistik pengaduan (total, proses, selesai)
+    -   Visualisasi data dengan grafik dan chart
+    -   Overview performa layanan
 
-## Security Vulnerabilities
+-   **Manajemen Pengaduan**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    -   List pengaduan pungli/calo dan keterlambatan
+    -   Detail pengaduan lengkap dengan lampiran
+    -   Update status pengaduan (Menunggu, Diproses, Selesai)
+    -   Filter dan pencarian pengaduan
 
-## License
+-   **Survei & Analisis**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    -   Melihat hasil survei kepuasan masyarakat
+    -   Analisis data survei untuk evaluasi layanan
+
+-   **Master Data**
+
+    -   Kelola jenis layanan imigrasi
+    -   Manajemen kategori pengaduan
+
+-   **Log Aktivitas**
+    -   Tracking aktivitas admin untuk audit trail
+
+## 🛠️ Teknologi yang Digunakan
+
+### Backend
+
+-   **Framework**: Laravel 10.x
+-   **PHP**: 8.1+
+-   **Database**: MySQL 8.0
+-   **Authentication**: Laravel Breeze + Laravel Socialite (Google OAuth)
+-   **Authorization**: Multi-guard Authentication (User & Admin)
+
+### Frontend
+
+-   **CSS Framework**: TailwindCSS 3.x
+-   **Build Tool**: Vite
+-   **Template Engine**: Blade
+-   **JavaScript**: Vanilla JS dengan Alpine.js (dari Breeze)
+
+### Packages & Libraries
+
+-   **guzzlehttp/guzzle**: HTTP client untuk API requests
+-   **laravel/sanctum**: API authentication
+-   **laravel/socialite**: OAuth authentication (Google)
+-   **fakerphp/faker**: Data seeding untuk development
+
+## 📋 Persyaratan Sistem
+
+-   PHP >= 8.1
+-   Composer
+-   Node.js & NPM
+-   MySQL >= 8.0
+-   Web Server (Apache/Nginx)
+-   Extension PHP: OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, JSON, BCMath, Fileinfo
+
+## 🚀 Instalasi
+
+### 1. Clone Repository
+
+```bash
+git clone <repository-url>
+cd Portal-LAPIS
+```
+
+### 2. Install Dependencies
+
+```bash
+# Install PHP dependencies
+composer install
+
+# Install Node.js dependencies
+npm install
+```
+
+### 3. Konfigurasi Environment
+
+```bash
+# Copy file environment
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+```
+
+### 4. Konfigurasi Database
+
+Edit file `.env` dan sesuaikan dengan konfigurasi database Anda:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=portal_lapis
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 5. Konfigurasi Google OAuth (Opsional)
+
+Tambahkan kredensial Google OAuth di `.env`:
+
+```env
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GOOGLE_REDIRECT_URI=http://localhost/auth/google/callback
+```
+
+### 6. Migrasi Database & Seeding
+
+```bash
+# Jalankan migrasi
+php artisan migrate
+
+# Jalankan seeder untuk data awal (kategori, admin, dll)
+php artisan db:seed
+```
+
+### 7. Build Assets
+
+```bash
+# Development
+npm run dev
+
+# Production
+npm run build
+```
+
+### 8. Jalankan Aplikasi
+
+```bash
+# Menggunakan Laravel built-in server
+php artisan serve
+```
+
+Akses aplikasi di: `http://localhost:8000`
+
+## 🔑 Default Credentials
+
+### Admin
+
+-   **Email**: admin@lapis.com (sesuaikan dengan seeder)
+-   **Password**: password
+
+## 📁 Struktur Database
+
+### Tabel Utama
+
+-   **users**: Data pengguna/masyarakat
+-   **admins**: Data administrator
+-   **kategori_pengaduan**: Kategori pengaduan
+-   **jenis_layanan**: Jenis layanan imigrasi
+-   **pengaduan_pungli_calo**: Pengaduan pungli/calo
+-   **pengaduan_keterlambatan**: Pengaduan keterlambatan
+-   **lampiran**: Lampiran/bukti pendukung
+-   **survei**: Data survei kepuasan
+-   **log_admins**: Log aktivitas admin
+
+## 🔄 Workflow Pengaduan
+
+1. **User** melakukan login/registrasi
+2. **User** mengisi form pengaduan (Pungli/Keterlambatan)
+3. **User** melampirkan bukti (opsional)
+4. **Sistem** menyimpan pengaduan dengan status "Menunggu"
+5. **Admin** melihat pengaduan di dashboard
+6. **Admin** memproses pengaduan dan update status
+7. **User** dapat melihat update status pengaduan
+
+## 📊 Workflow Survei
+
+1. **User** login ke sistem
+2. **User** mengakses halaman survei
+3. **User** mengisi penilaian untuk setiap kategori layanan
+4. **Sistem** menyimpan hasil survei
+5. **Admin** dapat melihat analisis hasil survei
+
+## 🧪 Testing
+
+```bash
+# Jalankan test
+php artisan test
+
+# Dengan coverage
+php artisan test --coverage
+```
+
+## 🔒 Security Features
+
+-   CSRF Protection (built-in Laravel)
+-   XSS Protection
+-   SQL Injection Protection (Eloquent ORM)
+-   Email Verification untuk user baru
+-   Password Hashing (bcrypt)
+-   Multi-guard Authentication
+-   Middleware Authorization
+
+## 📱 Browser Support
+
+-   Chrome (latest)
+-   Firefox (latest)
+-   Safari (latest)
+-   Edge (latest)
+
+## 🤝 Contributing
+
+Jika Anda ingin berkontribusi pada proyek ini:
+
+1. Fork repository
+2. Buat branch fitur (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## 📄 License
+
+Proyek ini menggunakan lisensi [MIT License](https://opensource.org/licenses/MIT).
+
+## 👨‍💻 Developer
+
+Dikembangkan dengan ❤️ menggunakan Laravel Framework
+
+## 📞 Kontak & Support
+
+Untuk pertanyaan atau bantuan, silakan hubungi tim pengembang atau buat issue di repository ini.
+
+---
+
+**Portal LAPIS** - Meningkatkan Kualitas Layanan Imigrasi Melalui Partisipasi Masyarakat
