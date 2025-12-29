@@ -297,6 +297,7 @@
                                 </th>
                                 <th class="py-3 px-2 text-xs font-bold uppercase text-gray-400 tracking-wider">Status
                                 </th>
+                                <th class="text-right">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm">
@@ -324,6 +325,12 @@
                                                 @else bg-gray-500 @endif"></span>
                                             {{ $p->status_pengaduan }}
                                         </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-right">
+                                        <a href="{{ route('pengaduan.show', ['type' => 'pungli', 'id' => $p->id_pengaduan]) }}"
+                                            class="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                                            Detail →
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -353,6 +360,12 @@
                                                 @else bg-gray-500 @endif"></span>
                                             {{ $k->status_pengaduan }}
                                         </span>
+                                    </td>
+                                    <td class="py-4 px-2 text-right">
+                                        <a href="{{ route('pengaduan.show', ['type' => 'keterlambatan', 'id' => $k->id_pengaduan]) }}"
+                                            class="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                                            Detail →
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

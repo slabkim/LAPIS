@@ -123,4 +123,25 @@ class PengaduanController extends Controller
 
         return redirect()->route('dashboard')->with('status', 'Pengaduan berhasil dikirim!');
     }
+
+    /**
+     * Show pengaduan detail for user
+     */
+    public function show($type, $id)
+    {
+        if ($type === 'pungli') {
+            $pengaduan = PengaduanPungliCalo::with(['layanan', 'lampiran'])->findOrFail($id);
+        } elseif ($type === 'keterlambatan') {
+            $pengaduan = PengaduanKeterlambatan::with(['layanan', 'lampiran'])->findOrFail($id);
+        } else {
+            abort(404);
+        }
+
+        // Security: only owner can view (anonymous pengaduan cannot be viewed)
+        if ($pengaduan->id_user !== Auth::id()) {
+            abort(403, 'Unauthorized access.');
+        }
+
+        return view('pengaduan.detail', compact('pengaduan', 'type'));
+    }
 }

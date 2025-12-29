@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/pengaduan/pungli', [PengaduanController::class, 'storePungli']);
     Route::get('/pengaduan/keterlambatan', [PengaduanController::class, 'createKeterlambatan'])->name('pengaduan.keterlambatan');
     Route::post('/pengaduan/keterlambatan', [PengaduanController::class, 'storeKeterlambatan']);
+    Route::get('/pengaduan/{type}/{id}', [PengaduanController::class, 'show'])->name('pengaduan.show');
 
     // Survei
     Route::get('/survei', [SurveiController::class, 'index'])->name('survei.index');

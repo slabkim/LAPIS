@@ -24,6 +24,24 @@
     <style>
         body {
             font-family: 'Public Sans', sans-serif;
+            background-image: url('{{ asset('assets/images/Background_LAPIS.png') }}');
+            background-repeat: repeat;
+            background-size: 300px 300px;
+            /* Adjust size as needed */
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* Custom scrollbar */
