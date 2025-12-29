@@ -32,16 +32,6 @@
                         <x-input-error :messages="$errors->get('id_layanan')" class="mt-2" />
                     </div>
 
-                    <!-- Kategori (Pungli/Calo) -->
-                    <div class="mb-4">
-                        <x-input-label for="id_kategori" :value="__('Kategori')" />
-                        <select id="id_kategori" name="id_kategori"
-                            class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
-                            <option value="1">Pungutan Liar (Pungli)</option>
-                            <option value="2">Percaloan</option>
-                        </select>
-                    </div>
-
                     <!-- Tanggal Kejadian -->
                     <div class="mb-4">
                         <x-input-label for="tanggal_kejadian" :value="__('Tanggal Kejadian')" />

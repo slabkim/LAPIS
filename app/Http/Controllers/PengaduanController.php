@@ -37,7 +37,7 @@ class PengaduanController extends Controller
         $pengaduan = PengaduanPungliCalo::create([
             'id_user' => $isAnonim ? null : Auth::id(),
             'id_layanan' => $request->id_layanan,
-            'id_kategori' => $request->id_kategori ?? 1, 
+            'id_kategori' => 1, // Default: Pungli (category field removed from form)
             'tanggal_kejadian' => $request->tanggal_kejadian,
             'nominal' => $request->nominal,
             'kronologi' => $request->kronologi,
