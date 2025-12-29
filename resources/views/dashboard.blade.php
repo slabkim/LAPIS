@@ -1,148 +1,426 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Beranda Layanan') }}
-        </h2>
-    </x-slot>
+<!DOCTYPE html>
+<html lang="id">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAPIS Disdukcapil - Dashboard Pengguna</title>
 
-                <!-- Card 1: Pengaduan Pungli & Calo -->
-                <a href="{{ route('pengaduan.pungli') }}"
-                    class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-red-600">
-                    <div class="text-center">
-                        <div class="mb-4 text-red-600">
-                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Pengaduan Pungli & Calo</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Laporkan dugaan pungutan liar dan praktik percaloan.
-                        </p>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        body {
+            font-family: 'Public Sans', sans-serif;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Dropdown hover */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <header
+        class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="size-8 rounded bg-blue-600 flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined text-xl">admin_panel_settings</span>
                     </div>
-                </a>
-
-                <!-- Card 2: Pengaduan Keterlambatan -->
-                <a href="{{ route('pengaduan.keterlambatan') }}"
-                    class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-600">
-                    <div class="text-center">
-                        <div class="mb-4 text-blue-600">
-                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Pengaduan Keterlambatan</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Laporkan jika pelayanan berkas Anda melebihi tenggat
-                            waktu.</p>
+                    <div class="flex flex-col">
+                        <h1 class="text-lg font-bold leading-tight tracking-tight text-gray-900 dark:text-white">LAPIS
+                        </h1>
+                        <span class="text-[10px] font-medium text-gray-500 uppercase tracking-wider">Disdukcapil Bandar
+                            Lampung</span>
                     </div>
-                </a>
+                </div>
 
-                <!-- Card 3: Survei Kepuasan -->
-                <a href="{{ route('survei.index') }}"
-                    class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 border-t-4 border-green-500">
-                    <div class="text-center">
-                        <div class="mb-4 text-green-500">
-                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2">Survei Kepuasan</h3>
-                        <p class="text-gray-600 dark:text-gray-400">Berikan penilaian Anda terhadap pelayanan kami.</p>
-                    </div>
-                </a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <nav class="flex items-center gap-6">
+                        <a class="text-blue-600 dark:text-blue-400 font-bold text-sm"
+                            href="{{ route('dashboard') }}">Beranda</a>
 
-            </div>
-
-            <!-- User History Section -->
-            <div class="mt-12">
-                <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">Riwayat Pengaduan Saya</h3>
-
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">
-                        @if ($pungli->isEmpty() && $keterlambatan->isEmpty())
-                            <p class="text-gray-500 text-center py-4">Belum ada riwayat pengaduan.</p>
-                        @else
-                            <div class="overflow-x-auto">
-                                <table class="min-w-full leading-normal">
-                                    <thead>
-                                        <tr>
-                                            <th
-                                                class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                                Jenis Pengaduan
-                                            </th>
-                                            <th
-                                                class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                                Layanan
-                                            </th>
-                                            <th
-                                                class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                                Tanggal
-                                            </th>
-                                            <th
-                                                class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-gray-300 uppercase tracking-wider">
-                                                Status
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($pungli as $p)
-                                            <tr>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                                    <span class="text-red-600 font-bold">Pungli & Calo</span>
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                                    {{ $p->layanan->nama_layanan }}
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                                    {{ $p->created_at->format('d/m/Y') }}
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                                    <span
-                                                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                                        {{ $p->status_pengaduan }}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-
-                                        @foreach ($keterlambatan as $k)
-                                            <tr>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                                    <span class="text-blue-600 font-bold">Keterlambatan</span>
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                                    {{ $k->layanan->nama_layanan }}
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                                    {{ $k->created_at->format('d/m/Y') }}
-                                                </td>
-                                                <td
-                                                    class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm">
-                                                    <span
-                                                        class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                                        {{ $k->status_pengaduan }}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                        <!-- Dropdown Pengaduan -->
+                        <div class="relative dropdown">
+                            <button
+                                class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm transition-colors flex items-center gap-1">
+                                Pengaduan
+                                <span class="material-symbols-outlined text-sm">expand_more</span>
+                            </button>
+                            <div
+                                class="dropdown-menu hidden absolute top-full left-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2">
+                                <a href="{{ route('pengaduan.pungli') }}"
+                                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                    <span class="material-symbols-outlined text-red-600">gavel</span>
+                                    <span>Pengaduan Calo & Pungli</span>
+                                </a>
+                                <a href="{{ route('pengaduan.keterlambatan') }}"
+                                    class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                                    <span class="material-symbols-outlined text-blue-600">schedule_send</span>
+                                    <span>Pengaduan Berkas Terlambat</span>
+                                </a>
                             </div>
-                        @endif
+                        </div>
+
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm transition-colors"
+                            href="{{ route('survei.index') }}">Survei</a>
+                        <a class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium text-sm transition-colors"
+                            href="{{ route('profile.edit') }}">Profil</a>
+                    </nav>
+
+                    <div class="h-6 w-px bg-gray-200 dark:bg-gray-700"></div>
+
+                    <div class="flex items-center gap-4">
+                        <button class="relative text-gray-500 hover:text-blue-600 transition-colors">
+                            <span class="material-symbols-outlined">notifications</span>
+                            {{-- Uncomment if you have notifications --}}
+                            {{-- <span class="absolute top-0 right-0 size-2 bg-red-600 rounded-full ring-2 ring-white dark:ring-gray-800"></span> --}}
+                        </button>
+
+                        <div class="flex items-center gap-3 pl-2">
+                            <div class="text-right hidden lg:block">
+                                <p class="text-sm font-bold text-gray-900 dark:text-white">{{ Auth::user()->name }}</p>
+                                <p class="text-xs text-gray-500">Masyarakat</p>
+                            </div>
+                            <div class="size-9 rounded-full bg-gray-200 bg-center bg-cover border-2 border-white shadow-sm"
+                                style="background-image: url('{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}');">
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-gray-600" onclick="toggleMobileMenu()">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+
+        <!-- Hero Section -->
+        <div class="relative w-full rounded-2xl overflow-hidden shadow-lg group">
+            <!-- Background with gradient overlay -->
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+
+            <div class="relative px-6 py-12 md:px-12 md:py-16 flex flex-col justify-end min-h-[320px] text-white">
+                <div class="max-w-2xl space-y-4">
+                    <span
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-xs font-semibold tracking-wide uppercase">
+                        <span class="material-symbols-outlined text-sm">waving_hand</span>
+                        Selamat Datang, {{ Auth::user()->name }}
+                    </span>
+                    <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+                        Layanan Pengaduan & Informasi Sipil
+                    </h1>
+                    <p class="text-base md:text-lg text-gray-100 font-medium opacity-90 leading-relaxed max-w-xl">
+                        Disdukcapil Kota Bandar Lampung berkomitmen memberikan pelayanan terbaik. Laporkan kendala atau
+                        berikan penilaian Anda di sini.
+                    </p>
+                    {{-- 
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <button class="flex items-center gap-2 bg-white text-blue-600 hover:bg-gray-50 font-bold py-3 px-6 rounded-lg transition-all shadow-md">
+                            <span class="material-symbols-outlined">article</span>
+                            Panduan Layanan
+                        </button>
+                    </div>
+                    --}}
                 </div>
             </div>
         </div>
-</x-app-layout>
+
+        <!-- Main Services Grid -->
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                    <span class="w-1 h-6 bg-red-600 rounded-full"></span>
+                    Layanan Utama
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1: Pungli (Warning Theme) -->
+                <div
+                    class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+                    <div
+                        class="h-40 w-full bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 relative flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex items-center justify-center text-red-600">
+                            <span class="material-symbols-outlined text-4xl">gavel</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3
+                            class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-red-600 transition-colors">
+                            Pengaduan Pungli & Calo
+                        </h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow">
+                            Laporkan indikasi pungutan liar atau praktik percaloan dalam pelayanan administrasi
+                            kependudukan.
+                        </p>
+                        <a href="{{ route('pengaduan.pungli') }}"
+                            class="w-full mt-auto flex items-center justify-center gap-2 bg-white border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-bold py-2.5 px-4 rounded-lg transition-all">
+                            Buat Laporan
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Keterlambatan (Primary Blue Theme) -->
+                <div
+                    class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+                    <div
+                        class="h-40 w-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 relative flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex items-center justify-center text-blue-600">
+                            <span class="material-symbols-outlined text-4xl">schedule_send</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3
+                            class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+                            Keterlambatan Berkas
+                        </h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow">
+                            Laporkan jika dokumen kependudukan Anda tidak selesai tepat waktu sesuai Standar Operasional
+                            Prosedur (SOP).
+                        </p>
+                        <a href="{{ route('pengaduan.keterlambatan') }}"
+                            class="w-full mt-auto flex items-center justify-center gap-2 bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-bold py-2.5 px-4 rounded-lg transition-all">
+                            Buat Laporan
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Survei (Green/Positive Theme) -->
+                <div
+                    class="group relative bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+                    <div
+                        class="h-40 w-full bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 relative flex items-center justify-center">
+                        <div
+                            class="size-16 bg-white dark:bg-gray-800 rounded-lg shadow-sm flex items-center justify-center text-green-600">
+                            <span class="material-symbols-outlined text-4xl">sentiment_satisfied</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3
+                            class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 transition-colors">
+                            Survei Kepuasan
+                        </h3>
+                        <p class="text-gray-500 text-sm mb-6 flex-grow">
+                            Bantu kami meningkatkan kualitas pelayanan dengan mengisi survei kepuasan masyarakat.
+                        </p>
+                        <a href="{{ route('survei.index') }}"
+                            class="w-full mt-auto flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 font-bold py-2.5 px-4 rounded-lg transition-all shadow-sm hover:shadow">
+                            Isi Survei
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Recent Activity Section -->
+        <section class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">Riwayat Laporan Terakhir</h2>
+                {{-- <a href="#" class="text-sm font-semibold text-blue-600 hover:underline">Lihat Semua</a> --}}
+            </div>
+
+            @if ($pungli->isEmpty() && $keterlambatan->isEmpty())
+                <div class="flex flex-col items-center justify-center py-12 text-center">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-full mb-3">
+                        <span class="material-symbols-outlined text-gray-400 text-3xl">inbox</span>
+                    </div>
+                    <p class="text-gray-500 font-medium">Belum ada riwayat laporan.</p>
+                </div>
+            @else
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-gray-100 dark:border-gray-700">
+                                <th class="py-3 px-2 text-xs font-bold uppercase text-gray-400 tracking-wider">ID
+                                    Laporan</th>
+                                <th class="py-3 px-2 text-xs font-bold uppercase text-gray-400 tracking-wider">Jenis
+                                </th>
+                                <th class="py-3 px-2 text-xs font-bold uppercase text-gray-400 tracking-wider">Tanggal
+                                </th>
+                                <th class="py-3 px-2 text-xs font-bold uppercase text-gray-400 tracking-wider">Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            @foreach ($pungli->take(5) as $p)
+                                <tr
+                                    class="group hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border-b border-gray-50 dark:border-gray-800">
+                                    <td class="py-4 px-2 font-medium text-gray-900 dark:text-white">
+                                        #LPS-{{ $p->id_pengaduan }}</td>
+                                    <td class="py-4 px-2 text-gray-600 dark:text-gray-300">
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-base text-red-600">gavel</span>
+                                            Pungli & Calo
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-2 text-gray-500">{{ $p->created_at->format('d M Y') }}</td>
+                                    <td class="py-4 px-2">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold 
+                                            @if ($p->status_pengaduan == 'Selesai') bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400
+                                            @elseif($p->status_pengaduan == 'Diproses') bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400
+                                            @else bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 @endif">
+                                            <span
+                                                class="size-1.5 rounded-full 
+                                                @if ($p->status_pengaduan == 'Selesai') bg-green-500
+                                                @elseif($p->status_pengaduan == 'Diproses') bg-yellow-500
+                                                @else bg-gray-500 @endif"></span>
+                                            {{ $p->status_pengaduan }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+                            @foreach ($keterlambatan->take(5) as $k)
+                                <tr
+                                    class="group hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors border-b border-gray-50 dark:border-gray-800">
+                                    <td class="py-4 px-2 font-medium text-gray-900 dark:text-white">
+                                        #LPK-{{ $k->id_pengaduan }}</td>
+                                    <td class="py-4 px-2 text-gray-600 dark:text-gray-300">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="material-symbols-outlined text-base text-blue-600">schedule_send</span>
+                                            Keterlambatan
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-2 text-gray-500">{{ $k->created_at->format('d M Y') }}</td>
+                                    <td class="py-4 px-2">
+                                        <span
+                                            class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold 
+                                            @if ($k->status_pengaduan == 'Selesai') bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400
+                                            @elseif($k->status_pengaduan == 'Diproses') bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400
+                                            @else bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 @endif">
+                                            <span
+                                                class="size-1.5 rounded-full 
+                                                @if ($k->status_pengaduan == 'Selesai') bg-green-500
+                                                @elseif($k->status_pengaduan == 'Diproses') bg-yellow-500
+                                                @else bg-gray-500 @endif"></span>
+                                            {{ $k->status_pengaduan }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endif
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="size-6 rounded bg-blue-600 flex items-center justify-center text-white text-xs">
+                            <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+                        </div>
+                        <span class="font-bold text-lg text-gray-900 dark:text-white">LAPIS Disdukcapil</span>
+                    </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 max-w-sm mb-4">
+                        Sistem layanan pengaduan dan informasi terpadu untuk pelayanan administrasi kependudukan yang
+                        bersih, transparan, dan akuntabel di Kota Bandar Lampung.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900 dark:text-white mb-4 uppercase tracking-wider">Tautan
+                    </h3>
+                    <ul class="space-y-3">
+                        <li><a class="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400"
+                                href="#">Tentang Kami</a></li>
+                        <li><a class="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400"
+                                href="#">Kebijakan Privasi</a></li>
+                        <li><a class="text-sm text-gray-500 hover:text-blue-600 dark:text-gray-400"
+                                href="#">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-sm text-gray-900 dark:text-white mb-4 uppercase tracking-wider">Kontak
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-2">
+                            <span class="material-symbols-outlined text-gray-400 text-sm mt-0.5">location_on</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">Jl. Dr. Susilo No. 2, Bandar
+                                Lampung</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gray-400 text-sm">phone</span>
+                            <span class="text-sm text-gray-500 dark:text-gray-400">(0721) 481234</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-gray-400 text-sm">email</span>
+                            <span
+                                class="text-sm text-gray-500 dark:text-gray-400">disdukcapil@bandarlampungkota.go.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-gray-100 dark:border-gray-700 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-sm text-gray-400 text-center md:text-left">
+                    © {{ date('Y') }} Dinas Kependudukan dan Pencatatan Sipil Kota Bandar Lampung.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            // Mobile menu handler - implement if needed
+            alert('Mobile menu - to be implemented');
+        }
+    </script>
+</body>
+
+</html>
