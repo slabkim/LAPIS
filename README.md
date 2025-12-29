@@ -104,9 +104,10 @@ Portal LAPIS adalah sistem aplikasi web yang dirancang untuk memfasilitasi layan
 -   PHP >= 8.1
 -   Composer
 -   Node.js & NPM
--   MySQL >= 8.0
+-   **Database**: MySQL >= 8.0 **ATAU** PostgreSQL >= 12 (Supabase)
 -   Web Server (Apache/Nginx)
 -   Extension PHP: OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, JSON, BCMath, Fileinfo
+-   Extension PHP untuk PostgreSQL (jika pakai Supabase): `pdo_pgsql`, `pgsql`
 
 ## 🚀 Instalasi
 
@@ -139,6 +140,8 @@ php artisan key:generate
 
 ### 4. Konfigurasi Database
 
+#### Opsi A: MySQL (Default)
+
 Edit file `.env` dan sesuaikan dengan konfigurasi database Anda:
 
 ```env
@@ -149,6 +152,23 @@ DB_DATABASE=portal_lapis
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+
+#### Opsi B: Supabase PostgreSQL (Recommended for Production)
+
+Edit file `.env` dengan credentials Supabase Anda:
+
+```env
+DB_CONNECTION=pgsql
+DB_HOST=db.xxxxxxxxxxxxxx.supabase.co
+DB_PORT=5432
+DB_DATABASE=postgres
+DB_USERNAME=postgres
+DB_PASSWORD=your-supabase-password
+DB_SCHEMA=public
+DB_SSLMODE=require
+```
+
+> 📚 **Panduan Lengkap Supabase**: Lihat file [`SUPABASE_INTEGRATION.md`](./SUPABASE_INTEGRATION.md) untuk tutorial step-by-step setup Supabase.
 
 ### 5. Konfigurasi Google OAuth (Opsional)
 
