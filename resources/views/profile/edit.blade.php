@@ -51,12 +51,21 @@
                         </div>
 
                         <!-- Edit Profile Button (Opens Modal) -->
-                        <div class="w-full md:w-auto flex justify-center">
+                        <div class="w-full md:w-auto flex gap-3 justify-center">
                             <button onclick="document.getElementById('editProfileModal').classList.remove('hidden')"
-                                class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-blue-600 text-white hover:bg-blue-700 text-sm font-bold shadow-md transition-all gap-2 w-full md:w-auto">
+                                class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-blue-600 text-white hover:bg-blue-700 text-sm font-bold shadow-md transition-all gap-2">
                                 <span class="material-symbols-outlined text-[20px]">edit</span>
                                 <span>Ubah Profil</span>
                             </button>
+
+                            <form method="POST" action="{{ route('logout') }}" class="inline">
+                                @csrf
+                                <button type="submit"
+                                    class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-red-600 text-white hover:bg-red-700 text-sm font-bold shadow-md transition-all gap-2">
+                                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                                    <span>Keluar</span>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
