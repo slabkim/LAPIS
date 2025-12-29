@@ -1,13 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Pengaduan Keterlambatan Berkas') }}
-        </h2>
-    </x-slot>
+<x-user-layout>
+    <x-slot name="title">Pengaduan Keterlambatan Berkas - LAPIS</x-slot>
 
     <div class="py-12">
         <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Pengaduan Keterlambatan Berkas</h2>
                 <!-- Status Message -->
                 @if (session('status'))
                     <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
@@ -58,4 +55,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-user-layout>

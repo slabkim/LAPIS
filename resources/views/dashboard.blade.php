@@ -42,8 +42,29 @@
             background: #94a3b8;
         }
 
-        /* Dropdown hover */
-        .dropdown:hover .dropdown-menu {
+        /* Dropdown hover - stays visible while cursor in dropdown area */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            /* Add small delay before hiding to prevent flickering */
+            transition: opacity 0.15s ease-in-out;
+        }
+
+        /* Create invisible bridge between button and menu to prevent hover gap */
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -0.5rem;
+            left: 0;
+            right: 0;
+            height: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown-menu:hover {
             display: block;
         }
     </style>
@@ -105,11 +126,6 @@
                     <div class="h-6 w-px bg-gray-200"></div>
 
                     <div class="flex items-center gap-4">
-                        <button class="relative text-gray-500 hover:text-blue-600 transition-colors">
-                            <span class="material-symbols-outlined">notifications</span>
-                            {{-- Uncomment if you have notifications --}}
-                            {{-- <span class="absolute top-0 right-0 size-2 bg-red-600 rounded-full ring-2 ring-white dark:ring-gray-800"></span> --}}
-                        </button>
 
                         <div class="flex items-center gap-3 pl-2">
                             <div class="text-right hidden lg:block">
@@ -148,7 +164,7 @@
                         Selamat Datang, {{ Auth::user()->name }}
                     </span>
                     <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">
-                        Layanan Pengaduan & Informasi Sipil
+                        Laporan & Penilaian Indeks Survei Kepuasan
                     </h1>
                     <p class="text-base md:text-lg text-gray-100 font-medium opacity-90 leading-relaxed max-w-xl">
                         Disdukcapil Kota Bandar Lampung berkomitmen memberikan pelayanan terbaik. Laporkan kendala atau
@@ -354,8 +370,9 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="md:col-span-2">
                     <div class="flex items-center gap-2 mb-4">
-                        <div class="size-6 rounded bg-blue-600 flex items-center justify-center text-white text-xs">
-                            <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+                        <div>
+                            <img src="{{ asset('assets/images/Logo_balam.png') }}" alt="Logo Bandar Lampung"
+                                class="size-10 object-contain">
                         </div>
                         <span class="font-bold text-lg text-gray-900">LAPIS Disdukcapil</span>
                     </div>

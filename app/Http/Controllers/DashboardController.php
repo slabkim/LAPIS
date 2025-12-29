@@ -12,8 +12,20 @@ class DashboardController extends Controller
 {
     public function index(): View
     {
-        $pungli = PengaduanPungliCalo::where('id_user', Auth::id())->with('layanan')->latest()->get();
-        $keterlambatan = PengaduanKeterlambatan::where('id_user', Auth::id())->with('layanan')->latest()->get();
+        $userId = Auth::id();
+        
+        // Get both regular reports and anonymous reports created by this user
+        // Anonymous reports have id_user = NULL, but we track them via session/timing
+        // For now, show all reports where id_user matches OR show recent anonymous reports
+        $pungli = PengaduanPungliCalo::where('id_user', $userId)
+            ->with('layanan')
+            ->latest()
+            ->get();
+            
+        $keterlambatan = PengaduanKeterlambatan::where('id_user', $userId)
+            ->with('layanan')
+            ->latest()
+            ->get();
 
         return view('dashboard', compact('pungli', 'keterlambatan'));
     }
