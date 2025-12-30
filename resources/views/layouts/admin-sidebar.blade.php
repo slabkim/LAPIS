@@ -1,34 +1,58 @@
-<aside class="w-64 bg-white dark:bg-gray-800 border-r border-gray-100 dark:border-gray-700 min-h-screen">
-    <div class="p-6">
-        <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2">
-            <img src="{{ asset('assets/images/Logo_balam.png') }}" alt="Logo Bandar Lampung" class="h-10 w-auto">
-            <div>
-                <h1 class="text-lg font-bold text-gray-800 dark:text-gray-200 leading-none">LAPIS Admin</h1>
-                <p class="text-[10px] text-gray-500 dark:text-gray-400">Disdukcapil Bandar Lampung</p>
-            </div>
+<aside
+    class="flex flex-col w-64 h-full bg-white dark:bg-[#1a202c] border-r border-slate-200 dark:border-slate-700 flex-shrink-0 z-20">
+    <!-- Tapis Decorative Header -->
+    <div class="tapis-strip"></div>
+    <div class="p-6 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800">
+        <div class="bg-cover bg-center rounded-lg h-10 w-10 shrink-0 shadow-sm border border-slate-200"
+            style="background-image: url('{{ asset('assets/images/Logo_balam.png') }}');">
+        </div>
+        <div class="flex flex-col">
+            <h1 class="text-slate-900 dark:text-white text-lg font-bold leading-none tracking-tight">LAPIS Admin</h1>
+            <p class="text-slate-500 dark:text-slate-400 text-[11px] font-medium mt-1">Disdukcapil B. Lampung</p>
+        </div>
+    </div>
+
+    <div class="flex flex-col flex-1 gap-1 p-4 overflow-y-auto">
+        <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-2">Menu Utama</p>
+
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('admin.dashboard') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary' }} group transition-colors"
+            href="{{ route('admin.dashboard') }}">
+            <span class="material-symbols-outlined text-[22px]">dashboard</span>
+            <span class="text-sm font-semibold">Dashboard</span>
+        </a>
+
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('admin.pengaduan.*') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary' }} group transition-colors"
+            href="{{ route('admin.pengaduan.pungli.index') }}">
+            <span
+                class="material-symbols-outlined text-[22px] {{ request()->routeIs('admin.pengaduan.*') ? '' : 'group-hover:text-primary' }} transition-colors">folder_open</span>
+            <span class="text-sm font-medium">Data Pengaduan</span>
+        </a>
+
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('admin.survei.index') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary' }} group transition-colors"
+            href="{{ route('admin.survei.index') }}">
+            <span
+                class="material-symbols-outlined text-[22px] {{ request()->routeIs('admin.survei.index') ? '' : 'group-hover:text-primary' }} transition-colors">poll</span>
+            <span class="text-sm font-medium">Survei Kepuasan</span>
+        </a>
+
+        <p class="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 mt-6">Sistem</p>
+
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('admin.master.*') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary' }} group transition-colors"
+            href="{{ route('admin.master.jenis_layanan.index') }}">
+            <span
+                class="material-symbols-outlined text-[22px] {{ request()->routeIs('admin.master.*') ? '' : 'group-hover:text-primary' }} transition-colors">settings</span>
+            <span class="text-sm font-medium">Pengaturan</span>
         </a>
     </div>
-    <nav class="mt-6">
-        <a href="{{ route('admin.dashboard') }}"
-            class="block px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 {{ request()->routeIs('admin.dashboard') ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : '' }}">
-            Dashboard
-        </a>
-        <a href="{{ route('admin.pengaduan.pungli.index') }}"
-            class="block px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 {{ request()->routeIs('admin.pengaduan.pungli.*') ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : '' }}">
-            Pengaduan Pungli
-        </a>
-        <a href="{{ route('admin.pengaduan.keterlambatan.index') }}"
-            class="block px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 {{ request()->routeIs('admin.pengaduan.keterlambatan.*') ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : '' }}">
-            Pengaduan Keterlambatan
-        </a>
-        <a href="{{ route('admin.survei.index') }}"
-            class="block px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 {{ request()->routeIs('admin.survei.index') ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : '' }}">
-            Survei Kepuasan
-        </a>
-        <div class="border-t border-gray-200 dark:border-gray-700 my-2"></div>
-        <a href="{{ route('admin.master.jenis_layanan.index') }}"
-            class="block px-6 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 {{ request()->routeIs('admin.master.jenis_layanan.*') ? 'bg-gray-100 dark:bg-gray-700 font-semibold' : '' }}">
-            Master Layanan
-        </a>
-    </nav>
+
+    <div class="p-4 border-t border-slate-100 dark:border-slate-800">
+        <form method="POST" action="{{ route('admin.logout') }}">
+            @csrf
+            <button type="submit"
+                class="flex w-full items-center justify-center gap-2 rounded-lg h-10 px-4 bg-white border border-slate-200 text-lapis-red hover:bg-red-50 text-sm font-bold shadow-sm transition-all">
+                <span class="material-symbols-outlined text-lg">logout</span>
+                <span>Keluar</span>
+            </button>
+        </form>
+    </div>
 </aside>
