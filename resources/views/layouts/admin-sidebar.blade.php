@@ -21,11 +21,18 @@
             <span class="text-sm font-semibold">Dashboard</span>
         </a>
 
-        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('admin.pengaduan.*') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary' }} group transition-colors"
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('admin.pengaduan.pungli.*') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary' }} group transition-colors"
             href="{{ route('admin.pengaduan.pungli.index') }}">
             <span
-                class="material-symbols-outlined text-[22px] {{ request()->routeIs('admin.pengaduan.*') ? '' : 'group-hover:text-primary' }} transition-colors">folder_open</span>
-            <span class="text-sm font-medium">Data Pengaduan</span>
+                class="material-symbols-outlined text-[22px] {{ request()->routeIs('admin.pengaduan.pungli.*') ? '' : 'group-hover:text-primary' }} transition-colors">gavel</span>
+            <span class="text-sm font-medium">Pengaduan Pungli & Calo</span>
+        </a>
+
+        <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('admin.pengaduan.keterlambatan.*') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary' }} group transition-colors"
+            href="{{ route('admin.pengaduan.keterlambatan.index') }}">
+            <span
+                class="material-symbols-outlined text-[22px] {{ request()->routeIs('admin.pengaduan.keterlambatan.*') ? '' : 'group-hover:text-primary' }} transition-colors">schedule_send</span>
+            <span class="text-sm font-medium">Pengaduan Keterlambatan</span>
         </a>
 
         <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg {{ request()->routeIs('admin.survei.index') ? 'bg-primary/10 text-primary' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-primary' }} group transition-colors"
