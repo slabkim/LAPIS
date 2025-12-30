@@ -97,8 +97,8 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 @forelse($pengaduan->lampiran as $l)
                     <div class="border rounded p-2">
-                        <a href="{{ asset('storage/' . $l->path_file) }}" target="_blank"
-                            class="text-blue-500 hover:underline break-all">
+                        <a href="{{ str_starts_with($l->path_file, 'http') ? $l->path_file : asset('storage/' . $l->path_file) }}"
+                            target="_blank" class="text-blue-500 hover:underline break-all">
                             {{ $l->tipe_file }} - Lihat File
                         </a>
                     </div>
