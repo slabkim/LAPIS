@@ -17,37 +17,37 @@
 </head>
 
 <body class="h-full bg-gray-50">
-    <div class="flex h-full w-full">
+    <div class="flex w-full h-full">
         <!-- Left Side: Login Form -->
-        <div class="w-full lg:w-1/2 flex flex-col h-full bg-white relative z-10 shadow-2xl">
+        <div class="relative z-10 flex flex-col w-full h-full bg-white shadow-2xl lg:w-1/2">
             <!-- Header Logo Area -->
-            <div class="flex items-center gap-3 px-8 py-8 pt-12 pl-11">
+            <div class="flex items-center gap-3 px-6 py-6 sm:px-8 sm:py-8 sm:pt-12 sm:pl-11">
                 <div
-                    class="h-12 w-12 rounded-lg bg-black/10 backdrop-blur-sm flex items-center justify-center border border-black/20">
+                    class="flex items-center justify-center w-12 h-12 border rounded-lg bg-black/10 backdrop-blur-sm border-black/20">
                     <img src="{{ asset('assets/images/Logo_balam.png') }}" alt="Logo Bandar Lampung"
-                        class="size-10 object-contain">
+                        class="object-contain size-10">
                 </div>
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900 tracking-tight leading-none">LAPIS</h1>
-                    <p class="text-xs text-gray-500 font-medium tracking-wider uppercase">Disdukcapil Bandar Lampung</p>
+                    <h1 class="text-2xl font-bold leading-none tracking-tight text-gray-900">LAPIS</h1>
+                    <p class="text-xs font-medium tracking-wider text-gray-500 uppercase">Disdukcapil Bandar Lampung</p>
                 </div>
             </div>
 
 
             <!-- Scrollable Form Content -->
-            <div class="flex-1 overflow-y-auto px-8 py-4 flex flex-col justify-center items-center">
-                <div class="w-full max-w-md space-y-8">
+            <div class="flex flex-col items-center justify-center flex-1 px-6 py-6 sm:px-8 sm:py-4 overflow-y-auto">
+                <div class="w-full max-w-md space-y-6 sm:space-y-8">
                     <!-- Welcome Text -->
                     <div class="space-y-2">
-                        <h2 class="text-3xl font-bold text-gray-900 tracking-tight">Selamat Datang</h2>
-                        <p class="text-gray-500 text-base">
+                        <h2 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Selamat Datang</h2>
+                        <p class="text-sm text-gray-500 sm:text-base">
                             Silakan masuk untuk mengakses layanan pengaduan dan penilaian pelayanan publik.
                         </p>
                     </div>
 
                     <!-- Session Status -->
                     @if (session('status'))
-                        <div class="mb-4 font-medium text-sm text-green-600">
+                        <div class="mb-4 text-sm font-medium text-green-600">
                             {{ session('status') }}
                         </div>
                     @endif
@@ -61,14 +61,14 @@
                             <label class="text-sm font-semibold text-gray-900" for="email">Email</label>
                             <div class="relative">
                                 <span
-                                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">mail</span>
+                                    class="absolute text-gray-400 -translate-y-1/2 material-symbols-outlined left-4 top-1/2">mail</span>
                                 <input
-                                    class="w-full h-12 rounded-lg border-gray-200 bg-gray-50 pl-11 pr-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-400"
+                                    class="w-full h-12 pr-4 transition-all border-gray-200 rounded-lg bg-gray-50 pl-11 focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400"
                                     id="email" name="email" placeholder="nama@email.com" type="email"
                                     value="{{ old('email') }}" required autofocus autocomplete="username" />
                             </div>
                             @error('email')
-                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -85,36 +85,36 @@
                             </div>
                             <div class="relative">
                                 <span
-                                    class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
+                                    class="absolute text-gray-400 -translate-y-1/2 material-symbols-outlined left-4 top-1/2">lock</span>
                                 <input
-                                    class="w-full h-12 rounded-lg border-gray-200 bg-gray-50 pl-11 pr-12 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-400"
+                                    class="w-full h-12 pr-12 transition-all border-gray-200 rounded-lg bg-gray-50 pl-11 focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-400"
                                     id="password" name="password" placeholder="Masukkan password" type="password"
                                     required autocomplete="current-password" />
                                 <button
-                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                    class="absolute text-gray-400 -translate-y-1/2 right-4 top-1/2 hover:text-gray-600"
                                     type="button" onclick="togglePassword()">
                                     <span class="material-symbols-outlined text-[20px]"
                                         id="toggleIcon">visibility</span>
                                 </button>
                             </div>
                             @error('password')
-                                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <!-- Remember Me -->
                         <div class="flex items-center">
                             <input id="remember_me" type="checkbox" name="remember"
-                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                class="text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <label for="remember_me" class="ml-2 text-sm text-gray-600">Ingat saya</label>
                         </div>
 
                         <!-- Submit Button -->
                         <button type="submit"
-                            class="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg shadow-blue-500/30 transition-all flex items-center justify-center gap-2 group">
+                            class="flex items-center justify-center w-full h-12 gap-2 font-bold text-white transition-all bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 shadow-blue-500/30 group">
                             <span>Masuk</span>
                             <span
-                                class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+                                class="text-sm transition-transform material-symbols-outlined group-hover:translate-x-1">arrow_forward</span>
                         </button>
                     </form>
 
@@ -124,13 +124,13 @@
                             <span class="w-full border-t border-gray-200"></span>
                         </div>
                         <div class="relative flex justify-center text-xs uppercase">
-                            <span class="bg-white px-2 text-gray-500">Atau masuk dengan</span>
+                            <span class="px-2 text-gray-500 bg-white">Atau masuk dengan</span>
                         </div>
                     </div>
 
                     <!-- Google Login Button -->
                     <a href="{{ route('auth.google') }}"
-                        class="w-full h-12 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-medium rounded-lg transition-all flex items-center justify-center gap-3">
+                        class="flex items-center justify-center w-full h-12 gap-3 font-medium text-gray-700 transition-all bg-white border border-gray-200 rounded-lg hover:bg-gray-50">
                         <svg class="w-5 h-5" viewBox="0 0 24 24">
                             <path fill="#4285F4"
                                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -145,8 +145,8 @@
                     </a>
 
                     <!-- Footer / Register Link -->
-                    <div class="text-center pt-2">
-                        <p class="text-gray-600 text-sm">
+                    <div class="pt-2 text-center">
+                        <p class="text-sm text-gray-600">
                             Belum punya akun?
                             <a class="font-bold text-blue-600 hover:text-blue-700 hover:underline"
                                 href="{{ route('register') }}">Daftar sekarang</a>
@@ -156,33 +156,33 @@
             </div>
 
             <!-- Footer Small Print -->
-            <div class="px-8 py-4 text-center">
+            <div class="px-6 py-4 text-center sm:px-8">
                 <p class="text-xs text-gray-400">© 2024 Disdukcapil Kota Bandar Lampung. All rights reserved.</p>
             </div>
         </div>
 
         <!-- Right Side: Decorative Image / Illustration -->
         <div
-            class="hidden lg:flex w-1/2 relative flex-col justify-between overflow-hidden bg-slate-900 text-white p-12">
+            class="relative flex-col justify-between hidden w-1/2 p-12 overflow-hidden text-white lg:flex bg-slate-900">
             <!-- Background Image with Overlay -->
             <div class="absolute inset-0 z-0">
-                <div class="absolute inset-0 bg-gradient-to-b from-blue-900/90 to-slate-900/95 z-10 mix-blend-multiply">
+                <div class="absolute inset-0 z-10 bg-gradient-to-b from-blue-900/90 to-slate-900/95 mix-blend-multiply">
                 </div>
-                <div class="h-full w-full bg-cover bg-center opacity-60"
+                <div class="w-full h-full bg-center bg-cover opacity-60"
                     style="background-image: url('{{ asset('assets/images/Background_LAPIS.png') }}');"></div>
             </div>
 
             <!-- Content on top of background -->
-            <div class="relative z-20 flex flex-col h-full justify-between">
+            <div class="relative z-20 flex flex-col justify-between h-full">
 
                 <!-- Welcome Text -->
-                <div class="mb-12 my-auto py-60">
-                    <div class="w-16 h-1 bg-red-600 mb-6"></div>
-                    <h2 class="text-4xl font-bold leading-tight mb-4 tracking-tight">
+                <div class="my-auto mb-12 py-60">
+                    <div class="w-16 h-1 mb-6 bg-red-600"></div>
+                    <h2 class="mb-4 text-4xl font-bold leading-tight tracking-tight">
                         Melayani Sepenuh Hati,<br />
                         <span class="text-yellow-400">Membangun Negeri.</span>
                     </h2>
-                    <p class="text-lg text-white/80 leading-relaxed font-light">
+                    <p class="text-lg font-light leading-relaxed text-white/80">
                         Platform resmi pengaduan dan penilaian kepuasan masyarakat untuk pelayanan administrasi
                         kependudukan yang lebih baik, transparan, dan akuntabel.
                     </p>
@@ -191,27 +191,27 @@
                 <div class="grid grid-cols-2 gap-6 pt-6 border-t border-white/20">
                     <div class="flex items-start gap-3">
                         <div class="p-2 rounded bg-white/10 backdrop-blur-sm">
-                            <span class="material-symbols-outlined text-yellow-400">verified_user</span>
+                            <span class="text-yellow-400 material-symbols-outlined">verified_user</span>
                         </div>
                         <div>
-                            <h4 class="font-bold text-sm">Aman &amp; Terpercaya</h4>
-                            <p class="text-xs text-slate-300 mt-1">Data Anda dilindungi enkripsi standar pemerintah.
+                            <h4 class="text-sm font-bold">Aman &amp; Terpercaya</h4>
+                            <p class="mt-1 text-xs text-slate-300">Data Anda dilindungi enkripsi standar pemerintah.
                             </p>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
                         <div class="p-2 rounded bg-white/10 backdrop-blur-sm">
-                            <span class="material-symbols-outlined text-yellow-400">support_agent</span>
+                            <span class="text-yellow-400 material-symbols-outlined">support_agent</span>
                         </div>
                         <div>
-                            <h4 class="font-bold text-sm">Respon Cepat</h4>
-                            <p class="text-xs text-slate-300 mt-1">Layanan pengaduan ditanggapi dengan segera.</p>
+                            <h4 class="text-sm font-bold">Respon Cepat</h4>
+                            <p class="mt-1 text-xs text-slate-300">Layanan pengaduan ditanggapi dengan segera.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Footer/Copyright -->
-                <div class="text-sm text-white/40 pt-6">
+                <div class="pt-6 text-sm text-white/40">
                     © 2024 Pemerintah Kota Bandar Lampung.
                 </div>
             </div>

@@ -140,15 +140,63 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden p-2 text-gray-600" onclick="toggleMobileMenu()">
+                <button class="md:hidden p-2 text-gray-600" type="button" id="mobile-menu-button"
+                    aria-controls="mobile-menu-overlay" aria-expanded="false">
                     <span class="material-symbols-outlined">menu</span>
                 </button>
             </div>
         </div>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="hidden fixed inset-0 z-50 bg-black/50 md:hidden">
+        <div id="mobile-menu"
+            class="fixed top-0 right-0 h-full w-72 max-w-[85vw] bg-white shadow-lg transform translate-x-full transition-transform duration-300">
+            <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                <h2 class="font-bold text-gray-900">Menu</h2>
+                <button id="mobile-menu-close" class="p-2 text-gray-600" type="button" aria-label="Tutup menu">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col p-4 space-y-2">
+                <a class="text-blue-600 font-bold py-2" href="{{ route('dashboard') }}">Beranda</a>
+
+                <div class="border-t border-gray-200 pt-2 mt-2">
+                    <p class="text-xs font-semibold text-gray-400 uppercase mb-2">Pengaduan</p>
+                    <a href="{{ route('pengaduan.pungli') }}"
+                        class="flex items-center gap-3 py-2 text-gray-700 hover:text-blue-600 transition-colors">
+                        <span class="material-symbols-outlined text-red-600">gavel</span>
+                        <span class="text-sm">Pengaduan Calo & Pungli</span>
+                    </a>
+                    <a href="{{ route('pengaduan.keterlambatan') }}"
+                        class="flex items-center gap-3 py-2 text-gray-700 hover:text-blue-600 transition-colors">
+                        <span class="material-symbols-outlined text-blue-600">schedule_send</span>
+                        <span class="text-sm">Pengaduan Berkas Terlambat</span>
+                    </a>
+                </div>
+
+                <a class="text-gray-600 hover:text-blue-600 font-medium py-2 transition-colors"
+                    href="{{ route('survei.index') }}">Survei</a>
+                <a class="text-gray-600 hover:text-blue-600 font-medium py-2 transition-colors"
+                    href="{{ route('profile.edit') }}">Profil</a>
+
+                <div class="border-t border-gray-200 pt-4 mt-4">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="size-9 rounded-full bg-gray-200 bg-center bg-cover border-2 border-white shadow-sm"
+                            style="background-image: url('{{ Auth::user()->profile_photo_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) }}');">
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-gray-900">{{ Auth::user()->name }}</p>
+                            <p class="text-xs text-gray-500">Masyarakat</p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
     <!-- Main Content -->
-    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 space-y-6 md:space-y-10">
 
         <!-- Hero Section -->
         <div class="relative w-full rounded-2xl overflow-hidden shadow-lg group">
@@ -156,17 +204,18 @@
             <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700"></div>
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
-            <div class="relative px-6 py-12 md:px-12 md:py-16 flex flex-col justify-end min-h-[320px] text-white">
+            <div
+                class="relative px-5 py-10 sm:px-6 md:px-12 md:py-16 flex flex-col justify-end min-h-[260px] md:min-h-[320px] text-white">
                 <div class="max-w-2xl space-y-4">
                     <span
                         class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-xs font-semibold tracking-wide uppercase">
                         <span class="material-symbols-outlined text-sm">waving_hand</span>
                         Selamat Datang, {{ Auth::user()->name }}
                     </span>
-                    <h1 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">
+                    <h1 class="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight leading-tight">
                         Laporan & Penilaian Indeks Survei Kepuasan
                     </h1>
-                    <p class="text-base md:text-lg text-gray-100 font-medium opacity-90 leading-relaxed max-w-xl">
+                    <p class="text-sm sm:text-base md:text-lg text-gray-100 font-medium opacity-90 leading-relaxed max-w-xl">
                         Disdukcapil Kota Bandar Lampung berkomitmen memberikan pelayanan terbaik. Laporkan kendala atau
                         berikan penilaian Anda di sini.
                     </p>
@@ -191,7 +240,7 @@
                 </h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 
                 <!-- Card 1: Pungli (Warning Theme) -->
                 <div
@@ -439,9 +488,42 @@
     </footer>
 
     <script>
-        function toggleMobileMenu() {
-            // Mobile menu handler - implement if needed
-            alert('Mobile menu - to be implemented');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+        if (mobileMenuButton && mobileMenuOverlay && mobileMenu && mobileMenuClose) {
+            const openMobileMenu = () => {
+                mobileMenuOverlay.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+                requestAnimationFrame(() => {
+                    mobileMenu.classList.remove('translate-x-full');
+                });
+                mobileMenuButton.setAttribute('aria-expanded', 'true');
+            };
+
+            const closeMobileMenu = () => {
+                mobileMenu.classList.add('translate-x-full');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                setTimeout(() => {
+                    mobileMenuOverlay.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }, 300);
+            };
+
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+            mobileMenuOverlay.addEventListener('click', (event) => {
+                if (event.target === mobileMenuOverlay) {
+                    closeMobileMenu();
+                }
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !mobileMenuOverlay.classList.contains('hidden')) {
+                    closeMobileMenu();
+                }
+            });
         }
     </script>
 </body>
